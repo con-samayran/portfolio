@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Mode } from "../data/content";
 
 export function useMode(): [Mode, (mode: Mode) => void] {
-  const read = (): Mode => window.location.hash === "#uiux" ? "uiux" : "video";
+  const read = (): Mode => window.location.hash === "#video" ? "video" : "uiux";
   const [mode, setMode] = useState<Mode>(read);
 
   useEffect(() => {

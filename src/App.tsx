@@ -13,6 +13,7 @@ import { useMode } from "./hooks/useMode";
 export default function App() {
   const [mode, setMode] = useMode();
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const t = window.setTimeout(() => setLoading(false), 900);
@@ -22,6 +23,18 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dataset.mode = mode;
   }, [mode]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      setProgress(scrollPercent);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return <main className={mode}>
     <Noise/><CustomCursor/>
@@ -35,6 +48,6 @@ export default function App() {
         <Contact/>
       </motion.div>
     </AnimatePresence>
-    <div className="progress" />
+    <div className="progress" style={{width: `${progress}%`}} />
   </main>;
 }
