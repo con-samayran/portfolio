@@ -9,7 +9,15 @@ export default function VideoWork() {
   return <section id="work" className="section work video-work">
     <Reveal><div className="section-top"><p className="eyebrow">SELECTED WORK / VIDEO</p><span>04 PROJECTS</span></div><h2>MAKE IT<br/><em>HIT.</em></h2></Reveal>
     <div className="project-grid video-grid">{videoProjects.map((p,i)=><Reveal key={p.title} delay={i*.05}><motion.article className="video-card" whileHover={{ y:-8 }} data-cursor="PLAY">
-      <div className="media-placeholder" style={{background:tones[p.tone]}}><div className="media-noise"/><span className="project-number">{p.tag}</span><div className="play-circle"><Play fill="currentColor" size={20}/></div><div className="timeline"><span/><span/><span/><span/><span/></div></div>
+      <div
+        className="media-placeholder"
+        style={{
+        backgroundImage: `url(https://img.youtube.com/vi/ToxxtnIjzBI/maxresdefault.jpg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+          }}
+      >
+        <div className="media-noise"/><span className="project-number">{p.tag}</span><div className="play-circle"><Play fill="currentColor" size={20}/></div><div className="timeline"><span/><span/><span/><span/><span/></div></div>
       <div className="project-meta"><div><p className="small">{p.type}</p><h3>{p.title}</h3><p>{p.description}</p></div><ArrowUpRight size={19}/></div>
       <div className="software">{p.software}</div>
     </motion.article></Reveal>)}</div>
